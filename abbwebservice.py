@@ -2,13 +2,13 @@ import requests
 import xml.etree.ElementTree as ET
 
 class ABBWebService:
-    """Class implenmenting ABB Robot Web Services.
+    """Class implenmenting ABB Robot Web Services in python.
     """
 
-    def __init__(self, base_url="http://localhost/rw/rapid/symbol/data/RAPID", username='Default User', password='robotics'):
+    def __init__(self, base_url="http://localhost/rw/rapid/symbol/data/RAPID", username='Default User', password='robotics', module='Module1'):
         self.ip = base_url
         self.robot = "T_ROB1"
-        self.module = "Module1"
+        self.module = module
         self.username = username
         self.password = password
         self.auth=requests.auth.HTTPDigestAuth(self.username, self.password)
@@ -33,10 +33,10 @@ class ABBWebService:
         print(rp.text)
         print("Variable "+name+" is updated to "+str(value)+"!")
     
+    #need to develop so that we can modify a part of the data
     def set_robtarget(self, var, trans, rot):
         """Sets the robtarget variable in RAPID.
         """
-        #_trans, rot = self.get_robtarget_variables(var)
         self.update_RAPID_var(var, "[[" + ','.join(
             [str(s) for s in trans]) + "]"+ ",[" +','.join(
             [str(s) for s in rot]) + "],[-1,0,0,0],[9E+9,9E+9,9E+9,9E+9,9E+9,9E+9]]")
