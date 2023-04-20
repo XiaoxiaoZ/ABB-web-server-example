@@ -5,7 +5,7 @@ class ABBWebService:
     """Class implenmenting ABB Robot Web Services in python.
     """
 
-    def __init__(self, base_url="http://localhost/rw/rapid/symbol/data/RAPID", username='Default User', password='robotics', module='Module1'):
+    def __init__(self, base_url="http://192.168.125.1/rw/rapid/symbol/data/RAPID", username='Default User', password='robotics', module='ModuleHVTest'):
         self.ip = base_url
         self.robot = "T_ROB1"
         self.module = module
@@ -48,5 +48,5 @@ class ABBWebService:
     
 serviceA = ABBWebService()
 serviceA.update_RAPID_var("offX",122)
-serviceA.set_robtarget("nocam",[100.0,0.1,0.1],[0.0,0.1,0.2,0.1])
-serviceA.set_wobj("wobj_cam",[200.0,20.323,232.323],[0.1,0.33,0.2,0.2])
+#serviceA.set_robtarget("nocam",[100.0,0.1,0.1],[0.0,0.1,0.2,0.1])
+serviceA.set_wobj("wobjhvtest",[200.0,20.323,232.323],[0.1,0.33,0.2,0.2])
